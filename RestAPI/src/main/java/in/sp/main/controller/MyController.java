@@ -20,21 +20,23 @@ public class MyController
 {
 	@Autowired
 	private UserService userService;
-	
+
+
+	//---- Insert Operation ----
 	@PostMapping("/user")
 	public User addUserDetails(@RequestBody User user) 
 	{
 		return userService.createUser(user); 
 	}
 	
-	
+	//---- Select Operation for All ----
 	@GetMapping("/user")
 	public List<User>getAllUserDetails()
 	{
 		return userService.getAllUsers(); 
 	}
 	
-	
+	//---- Insert Operation for Specific Id ----
 	@GetMapping("/user/{id}")
 	//use to send the response(ResponseEntity)
 	public ResponseEntity<User> gateUserDetails(@PathVariable int id) 
@@ -49,7 +51,8 @@ public class MyController
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+
+	//---- Update Operation ----
 	@PutMapping("/user/{id}")
 	public ResponseEntity<User> updateUserDetails(@PathVariable int id, @RequestBody User user)
 	{
@@ -63,7 +66,8 @@ public class MyController
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+
+	//---- Delete Operation ----
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<Void>deleteUser(@PathVariable int id)
 	{
